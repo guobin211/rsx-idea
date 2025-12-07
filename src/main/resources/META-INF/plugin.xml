@@ -1,15 +1,68 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.guobin211.rsxidea</id>
-    <name>rsx-idea</name>
-    <vendor>guobin211</vendor>
+    <name>RSX Language Support</name>
+    <vendor email="guobin211@gmail.com" url="https://github.com/guobin211">guobin211</vendor>
+
+    <!-- Plugin description -->
+    <!-- Plugin description -->
+    <p>RSX Language Support for IntelliJ IDEA</p>
+    <p>Provides syntax highlighting, code folding, bracket matching, and more for RSX files.</p>
+    <ul>
+        <li>Syntax highlighting for Rust, TypeScript, HTML template, and SCSS sections</li>
+        <li>Template directive support: @if, @each, @html</li>
+        <li>Text interpolation: {{ expression }}</li>
+        <li>Code folding for sections and directive blocks</li>
+        <li>Bracket matching</li>
+        <li>Code completion</li>
+    </ul>
+    <!-- Plugin description end -->
 
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.guobin211.rsxidea.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.guobin211.rsxidea.startup.MyProjectActivity" />
+        <!-- File Type -->
+        <fileType
+            name="RSX"
+            implementationClass="com.github.guobin211.rsxidea.filetype.RsxFileType"
+            fieldName="INSTANCE"
+            language="RSX"
+            extensions="rsx"/>
+
+        <!-- Language -->
+        <lang.parserDefinition
+            language="RSX"
+            implementationClass="com.github.guobin211.rsxidea.parser.RsxParserDefinition"/>
+
+        <!-- Syntax Highlighting -->
+        <lang.syntaxHighlighterFactory
+            language="RSX"
+            implementationClass="com.github.guobin211.rsxidea.highlighting.RsxSyntaxHighlighterFactory"/>
+
+        <!-- Color Settings Page -->
+        <colorSettingsPage
+            implementation="com.github.guobin211.rsxidea.highlighting.RsxColorSettingsPage"/>
+
+        <!-- Code Folding -->
+        <lang.foldingBuilder
+            language="RSX"
+            implementationClass="com.github.guobin211.rsxidea.folding.RsxFoldingBuilder"/>
+
+        <!-- Bracket Matching -->
+        <lang.braceMatcher
+            language="RSX"
+            implementationClass="com.github.guobin211.rsxidea.brace.RsxBraceMatcher"/>
+
+        <!-- Commenter -->
+        <lang.commenter
+            language="RSX"
+            implementationClass="com.github.guobin211.rsxidea.commenter.RsxCommenter"/>
+
+        <!-- Code Completion -->
+        <completion.contributor
+            language="RSX"
+            implementationClass="com.github.guobin211.rsxidea.completion.RsxCompletionContributor"/>
     </extensions>
 </idea-plugin>
