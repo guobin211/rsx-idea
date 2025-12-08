@@ -9,6 +9,8 @@ async fn get_server_side_props(req: Request) -> Response {
 ---
 
 <script>
+import { defineProps } from 'rsx-core'
+
 const { message } = defineProps<{
     message: string
 }>()

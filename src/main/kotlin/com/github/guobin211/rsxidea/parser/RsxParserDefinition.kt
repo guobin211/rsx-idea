@@ -13,6 +13,8 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
+import com.intellij.psi.tree.IElementType
+import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.github.guobin211.rsxidea.language.RsxLanguage
 
 class RsxParserDefinition : ParserDefinition {
@@ -31,7 +33,7 @@ class RsxParserDefinition : ParserDefinition {
     override fun getStringLiteralElements(): TokenSet = RsxTokenTypes.STRINGS
 
     override fun createElement(node: ASTNode): PsiElement {
-        throw UnsupportedOperationException("Not implemented")
+        return ASTWrapperPsiElement(node)
     }
 
     override fun createFile(viewProvider: FileViewProvider): PsiFile = RsxFile(viewProvider)

@@ -64,5 +64,7 @@
         <completion.contributor
             language="RSX"
             implementationClass="com.github.guobin211.rsxidea.completion.RsxCompletionContributor"/>
+
+
     </extensions>
 </idea-plugin>
